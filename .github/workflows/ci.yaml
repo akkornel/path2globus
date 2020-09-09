@@ -1,0 +1,24 @@
+name: Build the RFC from XML
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build RFC
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install xml2rfc (and Python dependencies)
+      run: |
+        python -m pip install --upgrade pip
+        pip install xml2rfc==3.0
+    - name: Process XML
+      run: |
+        mkdir output
+        xml2rfc -p output --text --html path2globus.xml
+    - name: Upload RFC
+      uses: actions/upload-artifact@v2
+      path: output/*
