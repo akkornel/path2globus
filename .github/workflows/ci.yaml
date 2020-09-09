@@ -15,11 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      ref: 'rfc'
-      path: 'src'
+      with:
+        ref: 'rfc'
+        path: 'src'
     - uses: actions/checkout@v2
-      ref: 'rfc-output'
-      path: 'output'
+      with:
+        ref: 'rfc-output'
+        path: 'output'
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
