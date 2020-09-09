@@ -21,4 +21,6 @@ jobs:
         xml2rfc -p output --text --html path2globus.xml
     - name: Upload RFC
       uses: actions/upload-artifact@v2
-      path: output/*
+      with:
+        name: outputs
+        path: output/*
