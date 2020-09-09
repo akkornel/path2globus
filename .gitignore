@@ -1,0 +1,12 @@
+# Ignore editor stuff
+.*.swp
+*~
+
+# Ignore venv stuff
+bin
+include
+lib
+pyvenv.cfg
+
+# Ignore rfc2xml outputs
+output
