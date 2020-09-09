@@ -19,8 +19,13 @@ jobs:
       run: |
         mkdir output
         xml2rfc -p output --text --html path2globus.xml
-    - name: Upload RFC
+    - name: Upload RFC Text
       uses: actions/upload-artifact@v2
       with:
-        name: outputs
-        path: output/*
+        name: path2globus.txt
+        path: output/path2globus.txt
+    - name: Upload RFC HTML
+      uses: actions/upload-artifact@v2
+      with:
+        name: path2globus.html
+        path: output/path2globus.html
