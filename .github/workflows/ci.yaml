@@ -32,7 +32,6 @@ jobs:
         pip install xml2rfc==3.0
     - name: Process XML
       run: |
-        mkdir output
         xml2rfc -p output --text --html src/path2globus.xml
     - name: Upload RFC Text
       uses: actions/upload-artifact@v2
