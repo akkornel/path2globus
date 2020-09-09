@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!-- vi: set ts=2 sw=2 et: -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<rfc category='info' submissionType='independent' ipr='trust200902'
+  docName="kornel-globus-path-01">
+<front>
+  <title abbrev='Globus ID from FS Paths'>
+      Globus Endpoint Identification from Filesystem Paths
+  </title>
+  <author fullname='A. Karl Kornel' initials='A. K.' surname='Kornel'>
+    <organization>Stanford University</organization>
+    <address>
+      <postal>
+        <street>Polya Hall</street>
+        <street>255 Panama Street</street>
+        <city>Stanford</city>
+        <region>CA</region>
+        <code>94305</code>
+        <country>United States</country>
+      </postal>
+      <email>akkornel@stanford.edu</email>
+    </address>
+  </author>
+</front>
+<middle>
+  <section title='The Text' anchor='text'>
+    <t>Text goes here!</t>
+  </section>
+</middle>
+</rfc>
