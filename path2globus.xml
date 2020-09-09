@@ -35,7 +35,106 @@
           when, and only when, they appear in all capitals, as shown here.
         </t>
       </section>
-    </section>
+      <section title='Structure of This Document' anchor='structure'>
+        <t>
+          After the Introduction, this document is divided into two main
+          sections.  First, <xref target='goals' /> describes the goals (and
+          non-goals) of the specification.  <xref target='spec' /> describes
+          the Path2Globus specification, with example Path2Globus documents in
+          <xref target='examples' />.  Following the specification,
+          <xref target='discovery' /> will describe the process implementors
+          should follow for locating a Path2Globus document.
+        </t>
+      </section>
+    </section><!-- End of intro -->
+    <section title='Design Goals' anchor='goals'>
+      <t>
+        Before describing the specification, it is worth spending some time
+        setting the 'ground rules' for the specification. This specification
+        was designed to meet the following goals:
+      </t>
+      <t>
+        <list style='hanging'>
+          <t hangText='Describe collections serving a directory'>
+            TBD
+          </t>
+          <t hangText='Map local paths to collection paths'>
+            TBD
+          </t>
+          <t hangText='Support multiple collections'>
+            This goal recognizes the use of the plural "collections" in the previous goal.  A path might be served by multiple endpoints (although this does <spanx style='emph'>not</spanx> guarantee that a user has access to all collections).
+          </t>
+          <t hangText='Enable collection migration'>
+            From time to time, the Globus collection(s) serving a path might change.  To reflect this in a Path2Globus document, endpoint's must be able to be marked as 'deprecated', telling new users to not use a particlar collection, and telling existing users that they should begin moving away from the collection.  Also, collections must be able to identify the collection(s) they are replacing.  This goal implies the need to support multiple collections.
+          </t>
+          <t hangText='Identify collection features'>
+            TBD
+          </t>
+        </list>
+      </t>
+      <t>
+        There are also a number of <spanx style='emph'>non-goals</spanx>,
+        which are properties that we are intentionally trying to avoid.
+      </t>
+      <t>
+        <list style='hanging'>
+          <t hangText='Guarantee accuracy'>
+            The presence of an endpoint in a Path2Globus document does not
+            guarantee that the information is valid at the time the client
+            attempts to use it. It is up to clients to confirm that the endpoint
+            information is valid.  <xref target='discovery' />
+            includes an example of how this might be done.
+          </t>
+          <t hangText='Guarantee access'>
+            Even if the endpoints listed in the Path2Globus document are
+            accurate, a user's ability to read the document does not guarantee
+            the user access to any of the endpoints listed in the document.
+            Again, <xref target='discovery' /> includes an example of how
+            this might be checked.
+          </t>
+          <t hangText='Include user or group information'>
+            As mentioned in the previous non-goal, a user with access to the
+            Path2Globus document does not immediately know that they are able
+            to use any of the endpoints listed in the document. Endpoint
+            administrators are able to restrict an endpoint's access to
+            specific users. It is an intentional decision to
+            <spanx style='emph'>not</spanx>
+            include this information in the Path2Globus document. Including
+            that information leaks information about who the authorized users
+            and groups are for an endpoint. For storage that may be mounted
+            across different environments, that may not be readily apparent to
+            users.
+          </t>
+        </list>
+      </t>
+    </section><!-- End of goals -->
+    <section title='The Path2Globus Specification' anchor='spec'>
+      <t>
+        A Path2Globus document is a document written in the JavaScript Object
+        Notation (JSON) format, as specified in <xref target='JSON'/>.
+        The document's media type is
+        <spanx style='verb'>application/json</spanx> , and its file extension
+        is <spanx style='verb'>.json </spanx>.  The file MUST use the UTF-8
+        encoding and MUST NOT include a byte order mark.
+      </t>
+      <t>
+        A Path2Globus document contains a single JSON array (the "document
+        root").  If the document contains any other JSON value at its root, or
+        there is any non-whitespace content before or after the array (where
+        "whitespace" is defined as a space, horizontal tab, line feed, or
+        carriage return), the document is not a valid Path2Globus document
+        and MUST be rejected.
+      </t>
+      <t>
+        The document root contains one or more JSON object as array members.
+      </t>
+      <t>
+        Content continues!
+      </t>
+    </section><!-- End of spec -->
+    <section title='Globus Path File Discovery' anchor='discovery'>
+      <t>Discovery goes here!</t>
+    </section><!-- End of discovery -->
   </middle>
   <back>
     <references>
@@ -78,5 +177,26 @@
         <seriesInfo name='RFC' value='8174' />
       </reference>
     </references>
+    <section title='Examples' anchor='examples'>
+      <section title='No endpoints available' anchor='ex-no-endpoint'>
+        <t>
+          In this example, the space owner is declaring that this space does
+          not have a corresponding Globus endpoint. By making the declaration
+          authoritative, any program searching for a Globus endpoint MUST stop
+          searching at this point.
+        </t>
+        <figure>
+          <artwork type='application/json'><![CDATA[
+[
+  {
+    "v": 1,
+    "authoritative": true,
+    "endpoints": []
+  }
+]
+          ]]></artwork>
+        </figure>
+      </section>
+    </section><!-- End of examples -->
   </back>
 </rfc>
