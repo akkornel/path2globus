@@ -1,5 +1,13 @@
 name: Build the RFC from XML
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - rfc
+    tags:
+      - rfc/**
+  pull_request:
+    branches:
+      - rfc
 
 jobs:
   build:
